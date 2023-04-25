@@ -1,11 +1,10 @@
-package com.davile.springboot.app.models.dao;
+package com.davile.springboot.app.models.service;
 
 import java.util.List;
 
 import com.davile.springboot.app.models.entity.Cliente;
 
-public interface IClienteDao {
-	
+public interface IClienteService {
 	public List<Cliente> findAll();
 	
 	public void save(Cliente cliente);
