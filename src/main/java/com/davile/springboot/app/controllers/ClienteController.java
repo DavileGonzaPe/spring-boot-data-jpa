@@ -3,7 +3,6 @@ package com.davile.springboot.app.controllers;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.davile.springboot.app.models.dao.IClienteDao;
 import com.davile.springboot.app.models.entity.Cliente;
+import com.davile.springboot.app.models.service.IClienteService;
 
 import jakarta.validation.Valid;
 
@@ -20,13 +19,12 @@ import jakarta.validation.Valid;
 public class ClienteController {
 	
 	@Autowired
-	@Qualifier("clienteDaoJPA")
-	private IClienteDao clienteDao;
+	private IClienteService clienteService;
 
 	@GetMapping("/listar")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de clientes");
-		model.addAttribute("clientes", clienteDao.findAll());
+		model.addAttribute("clientes", clienteService.findAll());
 		return "listar";
 	}
 	
@@ -45,7 +43,7 @@ public class ClienteController {
 		Cliente cliente = null;
 		
 		if (id > 0) {
-			cliente = clienteDao.findOne(id);
+			cliente = clienteService.findOne(id);
 		} else {
 			return "redirect:/listar";
 		}
@@ -63,14 +61,14 @@ public class ClienteController {
 			return "form";
 		}
 		
-		clienteDao.save(cliente);		
+		clienteService.save(cliente);		
 		return "redirect:listar";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Long id) {
 		if (id > 0) {
-			clienteDao.delete(id);
+			clienteService.delete(id);
 		}
 		
 		return "redirect:/listar";
