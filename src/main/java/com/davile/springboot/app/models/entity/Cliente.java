@@ -22,11 +22,11 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	private String nombre;
-	private String apelllido;
+	private String apellido;
 	private String email;	
-	@Column(name = "created_at")
+	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
-	private Date createdAt;
+	private Date createAt;
 
 	public Long getId() {
 		return id;
@@ -44,12 +44,12 @@ public class Cliente implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getApelllido() {
-		return apelllido;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setApelllido(String apelllido) {
-		this.apelllido = apelllido;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getEmail() {
@@ -60,12 +60,12 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getCreateAt() {
+		return createAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 
 	public static long getSerialversionuid() {
